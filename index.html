@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Untitled</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simple Tip Calculator">
+  <title>Tip Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    .calculator {
+      margin: 0 auto;
+      width: 300px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+
+    input[type="text"], input[type="number"] {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="button"] {
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="button"]:hover {
+      background-color: #218838;
+    }
+  </style>
+  <script>
+    function calculateTip() {
+      var servicePrice = parseFloat(document.getElementById('servicePrice').value);
+      var tipPercent = parseFloat(document.getElementById('tipPercent').value);
+      if (isNaN(servicePrice) || isNaN(tipPercent)) {
+        alert('Please enter valid numbers');
+        return;
+      }
+
+      var tipAmount = (servicePrice * tipPercent) / 100;
+      var totalAmount = servicePrice + tipAmount;
+
+      document.getElementById('tipAmount').value = tipAmount.toFixed(2);
+      document.getElementById('totalAmount').value = totalAmount.toFixed(2);
+    }
+
+    function calculateSharedBill() {
+      var billAmount = parseFloat(document.getElementById('billAmount').value);
+      var tipPercent = parseFloat(document.getElementById('sharedTipPercent').value);
+      var numPeople = parseInt(document.getElementById('numPeople').value);
+
+      if (isNaN(billAmount) || isNaN(tipPercent) || isNaN(numPeople) || numPeople < 1) {
+        alert('Please enter valid numbers');
+        return;
+      }
+
+      var tipAmount = (billAmount * tipPercent) / 100;
+      var totalAmount = billAmount + tipAmount;
+      var perPerson = totalAmount / numPeople;
+
+      document.getElementById('sharedTipAmount').value = tipAmount.toFixed(2);
+      document.getElementById('sharedTotalAmount').value = totalAmount.toFixed(2);
+      document.getElementById('perPerson').value = perPerson.toFixed(2);
+    }
+  </script>
+</head>
+<body>
+
+  <h1>Tip Calculator</h1>
+  <div class="calculator">
+    <h2>Basic Tip Calculator</h2>
+    <label for="servicePrice">Service Price ($):</label>
+    <input type="text" id="servicePrice" placeholder="Enter price" />
+    
+    <label for="tipPercent">Tip Percentage (%):</label>
+    <input type="text" id="tipPercent" placeholder="Enter tip percentage" />
+
+    <input type="button" value="Calculate Tip" onclick="calculateTip()" />
+
+    <h3>Results:</h3>
+    <label for="tipAmount">Tip Amount ($):</label>
+    <input type="text" id="tipAmount" readonly />
+    
+    <label for="totalAmount">Total Amount ($):</label>
+    <input type="text" id="totalAmount" readonly />
+  </div>
+
+  <br><br>
+
+  <div class="calculator">
+    <h2>Shared Bill Tip Calculator</h2>
+    <label for="billAmount">Bill Amount ($):</label>
+    <input type="text" id="billAmount" placeholder="Enter bill amount" />
+    
+    <label for="sharedTipPercent">Tip Percentage (%):</label>
+    <input type="text" id="sharedTipPercent" placeholder="Enter tip percentage" />
+
+    <label for="numPeople">Number of People:</label>
+    <input type="text" id="numPeople" placeholder="Enter number of people" />
+
+    <input type="button" value="Calculate" onclick="calculateSharedBill()" />
+
+    <h3>Results:</h3>
+    <label for="sharedTipAmount">Tip Amount ($):</label>
+    <input type="text" id="sharedTipAmount" readonly />
+    
+    <label for="sharedTotalAmount">Total Amount ($):</label>
+    <input type="text" id="sharedTotalAmount" readonly />
+    
+    <label for="perPerson">Total per Person ($):</label>
+    <input type="text" id="perPerson" readonly />
+  </div>
+
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
